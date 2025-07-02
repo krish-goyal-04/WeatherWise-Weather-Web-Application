@@ -5,7 +5,7 @@ const Layout = ({children})=>{
         <div className="bg-gradient-to-br from-background to-muted">
             header
             <main className="container mx-auto min-h-screen px-4 py-8 ">{children}</main>
-            <Footer></Footer>
+            <Footer />
         </div>
     )
 }
