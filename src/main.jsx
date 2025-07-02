@@ -8,6 +8,11 @@ import WeatherDashboard from './pages/WeatherDashboard.jsx'
 import Footer from './components/Footer.jsx'
 import CityPage from "./pages/CityPage.jsx"
 import Header from './components/Header.jsx'
+import { QueryClientProvider,QueryClient } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+
+const queryClient = new QueryClient()
 
 const AppLayout = ()=>{
   return(
@@ -38,8 +43,12 @@ const appRouter = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ThemeProvider>
-    <RouterProvider router={appRouter} />
-  </ThemeProvider>
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider>
+      <RouterProvider router={appRouter} />
+    </ThemeProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>
+  
   
 )

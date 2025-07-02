@@ -23,3 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 Personal_Readme.md
+.env
