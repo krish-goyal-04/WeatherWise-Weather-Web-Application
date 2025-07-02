@@ -1,9 +1,8 @@
-import { useSearchParams } from "react-router-dom"
 import {API_CONFIG} from "./config"
 
 class WeatherAPI{
     createURL(endpoint,params){
-        const searchParams = new useSearchParams({
+        const searchParams = new URLSearchParams({
             appid:API_CONFIG.API_KEY,
             ...params
         })

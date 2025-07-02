@@ -3,6 +3,8 @@ import {Button} from "../components/ui/button"
 import useGetLocation from "../hooks/useGetLocation";
 import LoadingSkeleton from "../components/LoadingSkeleton"
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert"
+import { useWeatherQuery,useForecastQuery,useReverseGeocodeQuery } from "../hooks/useWeatherAPI";
+import CurrentWeather from "../components/CurrentWeather";
 
 const WeatherDashboard = ()=>{
     const {coordinates,error, isLoading,getLocation} = useGetLocation()
@@ -10,9 +12,16 @@ const WeatherDashboard = ()=>{
     const handleRefresh= ()=>{
         getLocation()
         if(coordinates){
-            /** */
+            weatherQuery.refetch()
+            forecastQuery.refetch()
+            locationQuery.refetch()
         }
     }
+    const locationQuery = useReverseGeocodeQuery(coordinates)
+    const weatherQuery = useWeatherQuery(coordinates)
+    console.log(weatherQuery.data)
+    const forecastQuery = useForecastQuery(coordinates)
+
     if(isLoading){
         return(<LoadingSkeleton />)
     }
@@ -41,16 +50,49 @@ const WeatherDashboard = ()=>{
             </Alert>
         )
     }
+
+    const locationName = locationQuery?.data?.[0];
+    //console.log(locationName)
+    //console.log(locationName.name) 
+
+    if(weatherQuery.error||forecastQuery.error){
+         return(
+            <Alert variant="destructive">
+                <AlertTriangle className="h-4 w-4" />
+                    <AlertTitle>Error</AlertTitle>
+                    <AlertDescription>
+                        <p>Failed to fetch data!</p>
+                        <Button onClick={handleRefresh} variant={"outline"} className="w-fit">Retry</Button>
+                    </AlertDescription>
+            </Alert>
+        )
+    }
+
+    if(!weatherQuery.data || !forecastQuery.data){
+        return <LoadingSkeleton />
+    }
+
     return(
         <div>
             {/*Favouraite cities */}
             <div className="flex items-center justify-between">
                 <h1 className="text-xl font-bold tracking-tight">Current Location</h1>
-                <Button variant={'outline'} size={'icon'} onClick={handleRefresh}>
+                <Button variant={'outline'} size={'icon'} onClick={handleRefresh} disabled={weatherQuery.isFetching||forecastQuery.isFetching}>
                     <RefreshCcw className="h-4 w-4" />
                 </Button>
             </div>
-            {/* Current and Hourly weather */}
+            
+            <div>
+                <div>
+                    <CurrentWeather weatherData={weatherQuery.data} locationName={locationName} />
+                    {/*hourly temp */}
+                </div>
+                <div>
+                    {/*details*/}
+                    {/*forecast */}
+                </div>
+            </div>
+
         </div>
     )
 }
