@@ -52,7 +52,7 @@ const WeatherDetails =({weatherData})=>{
         },
     ]
     return(
-        <Card className="flex-1" >
+        <Card className="flex-1 h-fit" >
             <CardHeader>
                 <CardTitle className="text-xl">Weather Details</CardTitle>
             </CardHeader>
@@ -60,10 +60,10 @@ const WeatherDetails =({weatherData})=>{
                 <div className="grid gap-6 sm:grid-cols-2">
                     {details.map((detail,index)=>{
                         return(
-                            <div key={index} className="flex items-center gap-3 rounded-lg border p-4 hover:bg-blue-500 ">
+                            <div key={index} className="flex items-center gap-3 rounded-lg border p-4  ">
                                 <detail.icon className={`${detail.color}`}/>
                                 <div className="flex flex-col">
-                                    <p>{detail.title}</p>
+                                    <p className="font-bold">{detail.title}</p>
                                     <p>{detail.value}</p>
                                 </div>
                                 

@@ -7,7 +7,7 @@ const CurrentWeather = ({weatherData,locationName})=>{
         return `${Math.round(t)}`
     }
     const {
-        main:{feels_like,humidity,pressure,temp,temp_max,temp_min},
+        main:{feels_like,humidity,temp,temp_max,temp_min},
         wind:{speed},
         weather:[{main:weatherMain,description,icon}],
     } = weatherData
