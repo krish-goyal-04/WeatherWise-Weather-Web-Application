@@ -25,3 +25,11 @@ export const useReverseGeocodeQuery = (coordinates)=>{
         enabled:!!coordinates
     })
 }
+
+export const useLocationSearchQuery = (query)=>{
+    return useQuery({
+        queryKey:["location-search"],
+        queryFn:()=>weatherAPI.getSearchLocationWeather(query),
+        enabled: query.length>=3
+    })
+}

@@ -39,6 +39,14 @@ class WeatherAPI{
         })
         return this.fetchData(url)
     }
+
+    async getSearchLocationWeather(query){
+        const url = this.createURL(`${API_CONFIG.GEO}/direct`,{
+            q:query,
+            limit:5
+        })
+        return this.fetchData(url)
+    }
 }
 
 export const weatherAPI = new WeatherAPI()
