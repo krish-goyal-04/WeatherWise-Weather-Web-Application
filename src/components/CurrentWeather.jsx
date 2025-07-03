@@ -53,13 +53,7 @@ const CurrentWeather = ({weatherData,locationName})=>{
                                     <p className="font-medium">{speed} m/s</p>
                                 </div>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                <Gauge className="h-5 w-5 text-sky-500" />
-                                <div className="space-y-0.5">
-                                    <p className="font-medium">Pressure</p>
-                                    <p className="font-medium">{pressure} hPa</p>
-                                </div>
-                                </div>
+
                             </div>
                         </div>
                         <div className="flex flex-col items-center justify-center">

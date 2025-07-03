@@ -6,6 +6,8 @@ import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert"
 import { useWeatherQuery,useForecastQuery,useReverseGeocodeQuery } from "../hooks/useWeatherAPI";
 import CurrentWeather from "../components/CurrentWeather";
 import HourlyTemperature from "../components/HourlyTemperature";
+import WeatherDetails from "../components/WeatherDetails"
+import WeatherForecast from "../components/WeatherForecast"
 
 const WeatherDashboard = ()=>{
     const {coordinates,error, isLoading,getLocation} = useGetLocation()
@@ -21,7 +23,7 @@ const WeatherDashboard = ()=>{
     const locationQuery = useReverseGeocodeQuery(coordinates)
     const weatherQuery = useWeatherQuery(coordinates)
     const forecastQuery = useForecastQuery(coordinates)
-    console.log(forecastQuery?.data?.list)
+    console.log(forecastQuery?.data)
 
     if(isLoading){
         return(<LoadingSkeleton />)
@@ -82,13 +84,13 @@ const WeatherDashboard = ()=>{
             </div>
             
             <div className="grid gap-2">
-                <div className="flex flex-col lg:flex-row">
+                <div className="flex flex-col lg:flex-row gap-3">
                     <CurrentWeather weatherData={weatherQuery.data} locationName={locationName} />
                     <HourlyTemperature dataList={forecastQuery.data} />
                 </div>
-                <div>
-                    {/*details*/}
-                    {/*forecast */}
+                <div className="flex flex-col lg:flex-row gap-3">
+                    <WeatherDetails weatherData={weatherQuery.data}/>
+                    <WeatherForecast forecastData={forecastQuery.data} />
                 </div>
             </div>
 
