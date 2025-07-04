@@ -2,7 +2,6 @@ import React  from 'react'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import ReactDOM from "react-dom/client"
 import './index.css'
-import App from './App.jsx'
 import { ThemeProvider } from "./context/ThemeProvider.jsx"
 import WeatherDashboard from './pages/WeatherDashboard.jsx'
 import Footer from './components/Footer.jsx'
