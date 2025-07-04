@@ -19,7 +19,7 @@ const CurrentWeather = ({weatherData,locationName})=>{
                         <div className="space-y-4">
                             <div className="space-y-2">
                                 <div className="flex items-center">
-                                    <h2 className="text-2xl font-bold tracking-tighter">{locationName.name} </h2>
+                                    <h2 className="text-2xl font-bold tracking-tighter">{locationName?.name} </h2>
                                 </div>
                                 {locationName?.state &&(<span className="text-muted-foreground">{locationName.state}, {locationName.country}</span>)}
                             </div>
