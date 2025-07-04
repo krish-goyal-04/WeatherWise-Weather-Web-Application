@@ -19,7 +19,7 @@ const FavouraiteCityTablet = (props)=>{
             <Button onClick={(e)=>{
                 e.stopPropagation();
                 removeFavouraites.mutate(id);
-                toast.error(`Removed ${name} from Favourites`)
+                toast.error(`Removed ${name.cityName} from Favourites`)
                 }}
                 className="absolute right-1 top-1 h-6 w-6 rounded-full p-0 hover:text-destructive-foreground "
                 >
