@@ -13,7 +13,7 @@ const Header = ()=>{
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
 
                 <Link to="/"> <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-transparent bg-clip-text dark:from-green-300 dark:via-blue-400 dark:to-purple-500">
-                Klimate</h1>
+                WeatherWise</h1>
                 </Link>
 
                 <div className="flex gap-4">
