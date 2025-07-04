@@ -5,6 +5,7 @@ import { ArrowUp,ArrowDown } from "lucide-react"
 const WeatherForecast = ({forecastData})=>{
     const data = forecastData.list.slice(8).filter(item=>item.dt_txt.includes("12:00:00")||item.dt_txt.includes("00:00:00"))
 
+
     const formatDate = (val)=>{
         return format(new Date(val*1000),"dd-MM-yyyy")
     }

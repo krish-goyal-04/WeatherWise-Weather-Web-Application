@@ -1,5 +1,6 @@
 import { useQueryClient,useQuery, useMutation } from "@tanstack/react-query"
 import useLocalStorage from "./useLocalStorage"
+import { useEffect } from "react";
 
 
 
@@ -14,6 +15,10 @@ const useSearchHistory = ()=>{
         initialData:history
     })
 
+    useEffect(()=>{
+        queryClient.setQueryData(["search-history"],history)
+    },[history,queryClient])
+
     const addToHistroy = useMutation({
         mutationFn:async (search)=>{
             const newSearch = {
@@ -22,9 +27,9 @@ const useSearchHistory = ()=>{
                 searchedAt:Date.now()
             }
 
-            const filteredHistory = history.filter((item)=>{
+            const filteredHistory = history.filter((item)=>
                 !(item.lat===search.lat && item.lon===search.lon)
-            })
+            )
 
             const newHistory = [newSearch,...filteredHistory].slice(0,10)
 
@@ -35,5 +40,21 @@ const useSearchHistory = ()=>{
             queryClient.setQueryData(["search-history"],newHistory)
         }
     })
+
+    const clearHistory = useMutation({
+        mutationFn:async ()=>{
+            setHisory([])
+            return []
+        },
+        onSuccess:()=>{
+            queryClient.setQueryData(["search-history"],[])
+        }
+    })
+
+    return{
+        history:historyQuery.data??[],
+        addToHistroy,
+        clearHistory
+    }
 }
 export default useSearchHistory
