@@ -4,7 +4,6 @@ import { ArrowUp,ArrowDown } from "lucide-react"
 
 const WeatherForecast = ({forecastData})=>{
     const data = forecastData.list.slice(8).filter(item=>item.dt_txt.includes("12:00:00")||item.dt_txt.includes("00:00:00"))
-    console.log(data)
 
     const formatDate = (val)=>{
         return format(new Date(val*1000),"dd-MM-yyyy")
@@ -30,11 +29,11 @@ const WeatherForecast = ({forecastData})=>{
 
                     {/* Temperature Info */}
                     <div className="space-y-2">
-                    <div className="text-lg font-semibold text-primary">
+                    <div className="text-xl font-semibold text-primary">
                         {Math.round(item.main.temp)}°C
                     </div>
 
-                    <div className="flex justify-between text-sm">
+                    <div className="flex justify-between text-lg">
                         <span className="flex items-center gap-1 text-blue-500 font-medium">
                         <ArrowDown className="h-4 w-4" />
                         {Math.round(item.main.temp_min)}°
@@ -47,7 +46,7 @@ const WeatherForecast = ({forecastData})=>{
                     </div>
 
                     {/* Feels Like */}
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-md text-muted-foreground">
                     Feels like: <span className="font-medium">{Math.round(item.main.feels_like)}°C</span>
                     </div>
                 </CardContent>

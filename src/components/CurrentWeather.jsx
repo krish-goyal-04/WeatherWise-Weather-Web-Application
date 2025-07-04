@@ -1,5 +1,5 @@
 import {Card,CardContent} from "@/components/ui/card"
-import { ArrowDown, ArrowUp, Droplet, Droplets, Gauge, Wind } from "lucide-react"
+import { ArrowDown, ArrowUp, Droplet, Wind } from "lucide-react"
 
 
 const CurrentWeather = ({weatherData,locationName})=>{

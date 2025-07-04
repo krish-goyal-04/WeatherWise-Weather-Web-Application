@@ -23,7 +23,6 @@ const WeatherDashboard = ()=>{
     const locationQuery = useReverseGeocodeQuery(coordinates)
     const weatherQuery = useWeatherQuery(coordinates)
     const forecastQuery = useForecastQuery(coordinates)
-    console.log(forecastQuery?.data)
 
     if(isLoading){
         return(<LoadingSkeleton />)
