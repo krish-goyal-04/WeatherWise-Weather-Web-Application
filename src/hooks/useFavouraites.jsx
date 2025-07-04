@@ -3,7 +3,7 @@ import useLocalStorage from "./useLocalStorage";
 
 
 const useFavouraites = ()=>{
-    const [favouraites,setFavoraites] = useLocalStorage(["favouraites"],[])
+    const [favouraites,setFavoraites] = useLocalStorage("favouraites",[])
     const queryClient = useQueryClient();
 
     //Accessing data
@@ -19,7 +19,7 @@ const useFavouraites = ()=>{
         mutationFn:async (fav)=>{
             const newFav={
                 ...fav,
-                id:`${fav.lat}-${fav.lon}}`,
+                id:`${fav.lat}-${fav.lon}`,
                 addedAt:Date.now()
             }
             const exists = favouraites.some((item)=>newFav.id===item.id)
@@ -47,7 +47,8 @@ const useFavouraites = ()=>{
     return{
         favouraites:favouraitesQuery.data,
         addToFavouraites,
-        removeFavouraites
+        removeFavouraites,
+        isFavouraite:(lat,lon)=>favouraites.some((city)=>city.lat===lat && city.lon===lon)
     }
 }
 export default useFavouraites;

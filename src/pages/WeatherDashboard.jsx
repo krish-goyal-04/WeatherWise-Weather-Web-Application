@@ -8,6 +8,8 @@ import CurrentWeather from "../components/CurrentWeather";
 import HourlyTemperature from "../components/HourlyTemperature";
 import WeatherDetails from "../components/WeatherDetails"
 import WeatherForecast from "../components/WeatherForecast"
+import FavouraiteCities from "../components/FavouraiteCities";
+
 
 const WeatherDashboard = ()=>{
     const {coordinates,error, isLoading,getLocation} = useGetLocation()
@@ -73,8 +75,8 @@ const WeatherDashboard = ()=>{
     }
 
     return(
-        <div>
-            {/*Favouraite cities */}
+        <div className="space-y-4">
+            <FavouraiteCities />
             <div className="flex items-center justify-between mb-5">
                 <h1 className="text-2xl font-bold tracking-tight ">Dashboard</h1>
                 <Button variant={'outline'} size={'icon'} onClick={handleRefresh} disabled={weatherQuery.isFetching||forecastQuery.isFetching}>

@@ -10,6 +10,7 @@ import CityPage from "./pages/CityPage.jsx"
 import Header from './components/Header.jsx'
 import { QueryClientProvider,QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Toaster } from 'sonner'
 
 
 const queryClient = new QueryClient({
@@ -56,6 +57,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <RouterProvider router={appRouter} />
+      <Toaster richColors />
     </ThemeProvider>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>

@@ -6,6 +6,7 @@ import WeatherDetails from "../components/WeatherDetails"
 import WeatherForecast from "../components/WeatherForecast"
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert"
 import LoadingSkeleton from "../components/LoadingSkeleton"
+import FavouraiteButton from "../components/FavouraiteButton";
 
 
 
@@ -34,12 +35,15 @@ const CityPage = ()=>{
     }
     return(
          <div>
+            <div className="flex justify-between">
             <div className="flex  gap-1">
                 <h1 className="text-2xl font-bold tracking-tight mb-5">{weatherQuery.data.name}, </h1>
                 <span className="text-2xl font-bold tracking-tight text-muted-foreground mb-5">{weatherQuery.data.sys.country}</span>
-                <div>{/*Add to favouraite */}</div>
             </div>
-            
+            <div>
+                <FavouraiteButton data={{...weatherQuery.data,name:cityName}} />
+            </div>
+            </div>
             <div className="grid gap-4">
                 <div className="flex flex-col gap-4">
                     <CurrentWeather weatherData={weatherQuery.data} locationName={cityName} />
