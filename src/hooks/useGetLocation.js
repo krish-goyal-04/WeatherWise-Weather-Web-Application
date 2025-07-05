@@ -17,7 +17,7 @@ const useGetLocation = ()=>{
             setLocationData({
                 coordinates:null,
                 isLoading:false,
-                error:"Geolocation is not supported in your browser!"/*Can add some page here */
+                error:"Geolocation is not supported in your browser!"
             })
             return
         }
@@ -33,8 +33,21 @@ const useGetLocation = ()=>{
             })},
             (error)=>{
                 let errorMessage;
-                console.log(error);
-                /*Add switch statements fro errro handling */
+
+                switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage =
+                    "Location permission denied. Please enable location access.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    errorMessage = "Location request timed out.";
+                    break;
+                default:
+                    errorMessage = "An unknown error occurred.";
+                }
                 setLocationData({
                     coordinates:null,
                     error:"Error(need to add some content)",
