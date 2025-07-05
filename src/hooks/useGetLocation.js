@@ -50,7 +50,7 @@ const useGetLocation = ()=>{
                 }
                 setLocationData({
                     coordinates:null,
-                    error:"Error(need to add some content)",
+                    error:errorMessage,
                     isLoading:false
                 })},
                 {

@@ -54,8 +54,8 @@ const WeatherDashboard = ()=>{
             </Alert>
         )
     }
-
-    const locationName = locationQuery?.data?.[0];
+    if (weatherQuery.isLoading || forecastQuery.isLoading) return <LoadingSkeleton />;
+    
 
     if(weatherQuery.error||forecastQuery.error){
          return(
@@ -73,7 +73,7 @@ const WeatherDashboard = ()=>{
     if(!weatherQuery.data || !forecastQuery.data){
         return <LoadingSkeleton />
     }
-
+    const locationName = locationQuery?.data?.[0];
     return(
         <div className="space-y-4">
             <FavouraiteCities />
